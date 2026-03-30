@@ -320,17 +320,6 @@ h1 {
   box-shadow: 0 3px 12px var(--color-kernel-glow);
 }
 
-.result {
-  background: var(--color-husk);
-  padding: 1.25rem;
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
-  border: 1px solid rgba(212, 205, 192, 0.5);
-}
-
-.result.hidden {
-  display: none;
-}
 
 .result-reminder {
   font-weight: 600;
