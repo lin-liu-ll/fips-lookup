@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free instant lookup tool for U.S. FIPS codes. Enter a FIPS code to find the county and state, or enter a county and state to find its FIPS code.">
+  <meta property="og:title" content="FIPS Lookup">
+  <meta property="og:description" content="Free instant lookup tool for U.S. FIPS codes. Enter a FIPS code to find the county and state, or enter a county and state to find its FIPS code.">
+  <meta property="og:type" content="website">
+  <title>FIPS Code Lookup — Search by Code or County</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>FIPS Lookup</h1>
+
+    <div id="loading" class="loading">Loading data…</div>
+
+    <div id="mode-picker" class="mode-picker" hidden>
+      <div class="welcome">
+        <p class="welcome-lead">Find the FIPS code for any U.S. county, or look up a county and state from a known FIPS code.</p>
+        <p class="welcome-detail">Federal Information Processing Standard (FIPS) codes are numbers that uniquely identify U.S. geographic areas. The commonly used 5-digit county FIPS code combines a 2-digit state code and a 3-digit county code. For example, Iowa&rsquo;s state code is 19, Des Moines County&rsquo;s code is 057, making the full county FIPS code 19057.</p>
+        <p class="welcome-cta">Select an option below to get started.</p>
+      </div>
+      <div class="mode-choice-row" role="group" aria-label="Choose search direction">
+        <button
+          type="button"
+          class="mode-choice"
+          data-mode="fips"
+          title="Find county and state name based on FIPS code"
+        >
+          <span class="mode-choice-title">FIPS → Location</span>
+          <span class="mode-choice-sub">Find county and state name based on FIPS code</span>
+        </button>
+        <button
+          type="button"
+          class="mode-choice"
+          data-mode="name"
+          title="Find FIPS code based on county and state name"
+        >
+          <span class="mode-choice-title">Location → FIPS</span>
+          <span class="mode-choice-sub">Find FIPS code based on county and state name</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="search-workflow" class="search-workflow" hidden>
+      <button type="button" id="back-to-modes" class="back-link">← Back</button>
+
+      <form id="search-form" class="search-form">
+        <div id="panel-fips" class="search-form-inner" hidden>
+          <fieldset>
+            <legend>Search by FIPS code</legend>
+            <label for="fips-input">FIPS code (2 digits for state, 5 digits for county)</label>
+            <input type="text" id="fips-input" name="fips" inputmode="numeric" pattern="[0-9]*" placeholder="19 or 19057" autocomplete="off">
+          </fieldset>
+        </div>
+
+        <div id="panel-name" class="search-form-inner" hidden>
+          <fieldset>
+            <legend>Search by county and state name</legend>
+            <label for="county-input" class="label-with-note">County name</label>
+            <span class="field-note">(optional)</span>
+            <input type="text" id="county-input" name="county" placeholder="Des Moines" autocomplete="off" aria-required="false">
+            <label for="state-input" class="label-with-note">State name or abbreviation</label>
+            <span class="field-note field-note-required">(required)</span>
+            <input type="text" id="state-input" name="state" placeholder="Iowa or IA" autocomplete="off" aria-required="true">
+          </fieldset>
+        </div>
+
+        <div class="search-actions">
+          <button type="submit" class="search-submit">Search</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="result" class="result" aria-live="polite" aria-atomic="true"></div>
+    <div id="error" class="error" hidden></div>
+  </main>
+  <script src="app.js" defer></script>
+  <script data-goatcounter="https://linx.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
